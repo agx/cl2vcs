@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/">
+  <head>
+    <title>$title</title>
+  </head>
+  <body class="index">
+    <div id="header">
+      <h1>$title</h1>
+    </div>
+
+    <py:for each="block in blocks">
+        ${markup_block(block)}
+    </py:for>
+
+    <div id="footer">
+      <hr/>
+      <p>Genrated via <a href="/cl2vcs">cl2vcs</a> -- © 2008 Guido Günther <a href="mailto:agx@sigxcpu.org">&lt;agx@sigxcpu.org&gt;</a></p>
+    </div>
+  </body>
+</html>
+

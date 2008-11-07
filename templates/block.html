@@ -1,0 +1,8 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/">
+<h3>${block.package} (${block._raw_version}) ${block.distributions}; urgency=${block.urgency}${block.urgency_comment}</h3>
+<pre>${Markup(block.body)}</pre>
+<p py:if="not block._no_trailer">
+ -- ${block.author} ${block._trailer_separator} ${block.date}
+</p>
+</div>
