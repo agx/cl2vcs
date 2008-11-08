@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/">
+  <head>
+    <title>$title</title>
+  </head>
+  <body class="index">
+    <div id="header">
+      <h1>$title</h1>
+    </div>
+
+    <form action="/cl2vcs/index.cgi" method="get">
+    <p>
+        <label for="pkg">Source Package:</label>
+        <input type="text" name="pkg" id="pkg"/>
+        <input type="submit" value="cl2vcs"/>
+    </p>
+    </form>
+
+    <div py:if="err">
+        <em>${err}</em>
+    </div>
+
+    <div id="description">
+    <hr />
+    <a href="http://honk.sigxcpu.org/git/cl2vcs.git">cl2vcs</a> parses and displays
+    changelogs of <a href="http://debian.org">Debian</a> packages. If the package's
+    changelog lists <a href="http://honk.sigxcpu.org/projects/git-buildpackage/manual-html/gbp.releases.html#GBP.RELEASE.COMMIT">
+    Vcs commit ids</a> and if the package's debian/control file has a <a
+    href="http://www.debian.org/doc/developers-reference/best-pkging-practices.html#bpp-vcs">
+    Vcs-Browser field</a>, <em>cl2vcs</em> adds links from the
+    changelog back to the version control system for easy patch review. A real
+    live package that supports this is <a href="/cl2vcs/?pkg=libvirt">libvirt</a>.
+    </div>
+
+    <div id="footer">
+      <hr />
+      <p>© 2008 Guido Günther <a href="mailto:agx@sigxcpu.org">&lt;agx@sigxcpu.org&gt;</a></p>
+    </div>
+  </body>
+</html>
+
