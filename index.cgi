@@ -21,6 +21,7 @@
 import cgi
 import os
 import re
+import socket
 import sys
 #import cgitb; cgitb.enable(display=0, logdir='/tmp')
 import urlgrabber
@@ -36,7 +37,7 @@ PKGNAMERE="[a-zA-Z0-9.+\-]+$"
 
 
 def fetch_changelog(cl_url):
-    changelog = urlgrabber.urlread(cl_url).decode('utf-8')
+    changelog = urlgrabber.urlread(cl_url, timeout=5.0).decode('utf-8')
     return changelog
 
 
@@ -44,7 +45,7 @@ def fetch_pts_page(package):
     pts = None
     try:
         url = "%s/%s" % (PTS, package)
-        pts = urlgrabber.urlopen(url)
+        pts = urlgrabber.urlopen(url, timeout=5.0)
     except urlgrabber.grabber.URLGrabError, (code, msg):
         if code == 14:
             raise Exception, "Can't find package '%s' on '%s'" % (package, PTS)
@@ -124,7 +125,11 @@ def main(argv):
         if cl_url == None:
             return render_search_page(pkg=pkg, err=err)
 
-        cl_text = fetch_changelog(cl_url)
+        try:
+            cl_text = fetch_changelog(cl_url)
+        except urlgrabber.grabber.URLGrabError, (errcode, errmsg):
+            return render_search_page(title=title,
+                                      err="Cannot fetch '%s': %s" % (cl_url, errmsg))
         if vcs and vcs_url:
             vcsbrowser = get_vcsbrowser(vcs, vcs_url)
         else:
@@ -141,4 +146,3 @@ def main(argv):
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
 
-# vim:et:ts=4:sw=4:et:sts=4:ai:set list listchars=tab\:»·,trail\:·:
