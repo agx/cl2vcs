@@ -18,7 +18,7 @@ class GitWebBrowser(VCSBrowser):
     e.g. http://git.debian.org/?p=pkg-libvirt/gtk-vnc.git
     """
     def commit(self, commitid):
-        return "%s;a=commit;h=%s" % (self.url, commitid)
+        return "%s;a=commitdiff;h=%s" % (self.url, commitid)
 
     def branch(self, branch):
         return "%s;a=shortlog;h=refs/heads/%s" % (self.url, branch)
