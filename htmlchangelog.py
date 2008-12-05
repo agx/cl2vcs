@@ -4,7 +4,6 @@ import re
 import cgi
 from genshi.template import TemplateLoader
 import debian_bundle.changelog
-import vcsbrowsers
 
 _TEMPLATEDIR='templates/'
 
