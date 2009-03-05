@@ -21,7 +21,6 @@
 import cgi
 import os
 import re
-import socket
 import sys
 #import cgitb; cgitb.enable(display=0, logdir='/tmp')
 import urlgrabber
