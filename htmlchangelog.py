@@ -17,7 +17,7 @@ class HTMLChangelogFilter(object):
                     ]
 
     def __init__(self, vcsbrowser=None):
-        self.vcsbrowser=vcsbrowser
+        self.vcsbrowser = vcsbrowser
 
     def vcs_commit_filter(self, changes):
         body = []
@@ -28,10 +28,9 @@ class HTMLChangelogFilter(object):
                 if m:
                     commitid = m.group('commitid')
                     link = '<a href="%s">%s</a>' % (self.vcsbrowser.commit(commitid), commitid)
-                    body.append(m.group("s") + link + m.group("e"))
-                    break 
-            else:
-                body.append(line)
+                    line = m.group("s") + link + m.group("e")
+                    break
+            body.append(line)
         return "\n".join(body)
 
     def markup_block(self, block):
