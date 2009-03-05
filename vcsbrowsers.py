@@ -1,7 +1,9 @@
 # convenience wrappers to construct links 
 # into the webinterfaces of different VCSs
 
-class VCSBrowser:
+import re
+
+class VCSBrowser(object):
     def __init__(self, url):
         self.url = url.rstrip('/')
 
@@ -17,6 +19,10 @@ class GitWebBrowser(VCSBrowser):
     URLs for gitweb:
     e.g. http://git.debian.org/?p=pkg-libvirt/gtk-vnc.git
     """
+    def __init__(self, url):
+        url = re.sub(r';a=summary$', '', url)
+        VCSBrowser.__init__(self, url)
+
     def commit(self, commitid):
         return "%s;a=commitdiff;h=%s" % (self.url, commitid)
 
