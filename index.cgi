@@ -114,7 +114,7 @@ def main(argv):
         try:
             pts = fetch_pts_page(pkg)
         except Exception, exc_err:
-            err=exc_err
+            err = exc_err
             pts = None
 
         if not pts:
@@ -122,8 +122,8 @@ def main(argv):
 
         cl_url, vcs_url, vcs = parse_pts_xhtml(pts)
         if cl_url == None:
-            return render_search_page(pkg=pkg, err=err)
-
+            return render_search_page(title=title, pkg=pkg,
+                                      err="Cannot parse changelog from PTS page.")
         try:
             cl_text = fetch_changelog(cl_url)
         except urlgrabber.grabber.URLGrabError, (errcode, errmsg):
