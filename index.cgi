@@ -29,7 +29,7 @@ from genshi.template import TemplateLoader
 import vcsbrowsers
 from htmlchangelog import HTMLChangelog
 
-VERSION="0.0.2"
+VERSION="0.0.3"
 XMLNS='http://www.w3.org/1999/xhtml'
 PTS='http://packages.qa.debian.org'
 PKGNAMERE="[a-zA-Z0-9.+\-]+$"
