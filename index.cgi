@@ -63,9 +63,11 @@ def parse_pts_xhtml(pts):
     result = searcher(tree)
 
     for r in result:
-        if r.text == "Changelog":
+        if not r.text:
+            continue
+        if r.text.lower() == "changelog":
             cl_url = r.attrib['href']
-        elif r.text == "browse":
+        elif r.text.lower() == "browse":
             vcs_url = r.attrib['href']
             parent = r.getparent()
             vcs = parent.getchildren()[0].text.lower()
