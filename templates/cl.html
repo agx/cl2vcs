@@ -1,9 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:py="http://genshi.edgewall.org/">
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
   <head>
     <title>$title</title>
   </head>
   <body class="index">
+
+    <xi:include href="form.html" />
+
     <div id="header">
       <h1>$title</h1>
     </div>
@@ -14,7 +18,7 @@
 
     <div id="footer">
       <hr/>
-      <p>Generated via <a href="/cl2vcs">cl2vcs</a> -- © 2008,2009 Guido Günther <a href="mailto:agx@sigxcpu.org">&lt;agx@sigxcpu.org&gt;</a></p>
+      <p>Generated via <a href="/cl2vcs">cl2vcs</a> -- © 2008,2009,2010 Guido Günther <a href="mailto:agx@sigxcpu.org">&lt;agx@sigxcpu.org&gt;</a></p>
     </div>
   </body>
 </html>

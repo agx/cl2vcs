@@ -1,16 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:py="http://genshi.edgewall.org/">
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
   <head>
     <title>$title</title>
   </head>
   <body class="index">
-    <form action="/cl2vcs/index.cgi" method="get">
-    <p>
-        <label for="pkg">Source Package:</label>
-        <input type="text" name="pkg" id="pkg"/>
-        <input type="submit" value="cl2vcs"/>
-    </p>
-    </form>
+
+    <xi:include href="form.html" />
 
     <div py:if="err">
         <em>${err}</em>
