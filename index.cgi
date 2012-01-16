@@ -45,7 +45,7 @@ def fetch_pts_page(package):
     try:
         url = "%s/%s" % (PTS, package)
         pts = urlgrabber.urlopen(url, timeout=5.0)
-    except urlgrabber.grabber.URLGrabError, (code, msg):
+    except urlgrabber.grabber.URLGrabError as (code, msg):
         if code == 14:
             raise Exception, "Can't find package '%s' on '%s'" % (package, PTS)
         else:
@@ -110,12 +110,14 @@ def main(argv):
         if pkg:
             if not re.match(PKGNAMERE, pkg):
                 return render_search_page(title=title, err=u"Invalid package name: '%s'" % pkg)
+            else:
+                pkg = str(pkg)
         else:
             return render_search_page(title=title, err=err)
 
         try:
             pts = fetch_pts_page(pkg)
-        except Exception, exc_err:
+        except Exception as exc_err:
             err = exc_err
             pts = None
 
