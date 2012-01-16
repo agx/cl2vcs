@@ -3,7 +3,7 @@
 import re
 import cgi
 from genshi.template import TemplateLoader
-import debian_bundle.changelog
+import debian.changelog
 
 _TEMPLATEDIR='templates/'
 
@@ -41,11 +41,11 @@ class HTMLChangelogFilter(object):
         return block
 
 
-class HTMLChangelog(debian_bundle.changelog.Changelog):
+class HTMLChangelog(debian.changelog.Changelog):
     def __init__(self, file=None, max_blocks=None, allow_empty_author=False, strict=True, templatedir=_TEMPLATEDIR, vcsbrowser=None):
-        debian_bundle.changelog.Changelog.__init__(self, file=file, max_blocks=max_blocks,
-                                                   allow_empty_author=allow_empty_author,
-                                                   strict=strict)
+        debian.changelog.Changelog.__init__(self, file=file, max_blocks=max_blocks,
+                                            allow_empty_author=allow_empty_author,
+                                            strict=strict)
         self.templatedir = templatedir
         loader = TemplateLoader(self.templatedir)
         self.html_tmpl = loader.load('cl.html')
