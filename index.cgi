@@ -22,7 +22,6 @@ import cgi
 import os
 import re
 import sys
-#import cgitb; cgitb.enable(display=0, logdir='/tmp')
 import urlgrabber
 from lxml import etree
 from genshi.template import TemplateLoader
