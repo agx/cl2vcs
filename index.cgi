@@ -1,7 +1,7 @@
 #!/usr/bin/python -u
 # vim: set fileencoding=utf-8 :
 #
-# (C) 2008 Guido Guenther <agx@sigxcpu.org>
+# (C) 2008,2015 Guido Guenther <agx@sigxcpu.org>
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
@@ -28,7 +28,7 @@ from genshi.template import TemplateLoader
 import vcsbrowsers
 from htmlchangelog import HTMLChangelog
 
-VERSION="0.0.3"
+VERSION="0.0.4"
 XMLNS='http://www.w3.org/1999/xhtml'
 PTS='http://packages.qa.debian.org'
 PKGNAMERE="[a-zA-Z0-9.+\-]+$"
@@ -82,9 +82,10 @@ def get_vcsbrowser(vcs, vcs_url):
 
 def render_search_page(title, pkg=None, err=None):
     loader = TemplateLoader('templates')
-    tmpl = loader.load('index.html')
-    print tmpl.generate(title=title, pkg=pkg,
-                        err=err).render('xhtml', doctype='xhtml-strict')
+    tmpl = loader.load('index.html', encoding='utf-8')
+    t = tmpl.generate(title=title, pkg=pkg, err=err)
+    print t.render('xhtml', doctype='xhtml-strict').encode('utf-8')
+
 
 
 def render_changelog_page(cl):

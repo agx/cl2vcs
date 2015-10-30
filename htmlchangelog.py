@@ -48,8 +48,8 @@ class HTMLChangelog(debian.changelog.Changelog):
                                             strict=strict)
         self.templatedir = templatedir
         loader = TemplateLoader(self.templatedir)
-        self.html_tmpl = loader.load('cl.html')
-        self.block_tmpl = loader.load('block.html')
+        self.html_tmpl = loader.load('cl.html', encoding='utf-8')
+        self.block_tmpl = loader.load('block.html', encoding='utf-8')
         self.filter = HTMLChangelogFilter(vcsbrowser=vcsbrowser)
 
     def markup_block(self, block):
@@ -60,5 +60,5 @@ class HTMLChangelog(debian.changelog.Changelog):
         return self.html_tmpl.generate(title=title, blocks=self._blocks, markup_block=self.markup_block)
 
     def __str__(self):
-        return self.stream().render('xhtml', doctype='xhtml-strict')
+        return self.stream().render('xhtml', doctype='xhtml-strict').encode('utf-8')
 
