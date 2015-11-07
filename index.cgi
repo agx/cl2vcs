@@ -75,7 +75,7 @@ def parse_pts_xhtml(pts):
 
 def get_vcsbrowser(vcs, vcs_url):
     if vcs == "git":
-        return vcsbrowsers.GitWebBrowser(vcs_url)
+        return vcsbrowsers.guess_git_repo(vcs_url)
     elif vcs == "Mercurial":
         return vcsbrowsers.HgBrowser(vcs_url)
 
