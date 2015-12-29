@@ -3,13 +3,14 @@
       xmlns:xi="http://www.w3.org/2001/XInclude">
   <head>
     <title>$title</title>
+     <link rel="stylesheet" type="text/css" href="cl2vcs.css"/>
   </head>
   <body class="index">
 
     <xi:include href="form.html" />
 
     <div py:if="err">
-        <em>${err}</em>
+        <em class="errormsg">${err}</em>
     </div>
 
     <div id="description">
