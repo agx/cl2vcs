@@ -14,6 +14,24 @@ class VCSBrowser(object):
     def branch(self, branch):
         raise NotImplemented
 
+class GitlabBrowser(VCSBrowser):
+    """
+    Gitlab based repo browser
+
+    URLs for gitlab:
+    e.g. http://salsa.debian.org/libvirt-team/libvirt.git
+    """
+    repotype = "gitweb"
+
+    def __init__(self, url):
+        VCSBrowser.__init__(self, url)
+
+    @classmethod
+    def check(cls, url):
+        return True if 'https://salsa.debian.org/' in url else False
+
+    def commit(self, commitid):
+        return "%s/commit/%s" % (self.url, commitid)
 
 class GitWebBrowser(VCSBrowser):
     """
@@ -59,7 +77,7 @@ def guess_git_repo(url):
     >>> guess_git_repo("http://example.com/bar/foo").repotype
     'cgit'
     """
-    for repotype in [CGitBrowser, GitWebBrowser]:
+    for repotype in [GitlabBrowser, CGitBrowser, GitWebBrowser]:
         if repotype.check(url):
             return repotype(url)
     return CGitBrowser(url)
