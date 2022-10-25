@@ -2,4 +2,8 @@ For more information see:
 
  https://honk.sigxcpu.org/piki/projects/cl2vcs/
 
-Depends: python-lxml, python-urlgrabber, python-genshi, python-debian (>=0.1.11)
+To test locally try
+
+     python3  -c "import cl2vcs; cl2vcs.handle_pkg('multipath-tools', title='bla')"  > out.html
+
+Depends: python3-lxml, python3-urlgrabber, python3-genshi, python3-debian

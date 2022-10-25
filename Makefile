@@ -1,8 +1,8 @@
-VERSION=$(shell grep ^VERSION index.cgi | sed -e s'/.*\="\([0-9.]\+\)".*/\1/')
+VERSION=$(shell grep ^VERSION cl2vcs.py | sed -e s'/.*\="\([0-9.]\+\)".*/\1/')
 PKG=cl2vcs
 
 all:
-	nosetests --with-doctest
+	nosetests3 --with-doctest
 
 clean:
 	rm -f *.pyc

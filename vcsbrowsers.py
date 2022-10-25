@@ -1,6 +1,7 @@
 # convenience wrappers to construct links
 # into the webinterfaces of different VCSs
 
+from builtins import object
 import re
 
 

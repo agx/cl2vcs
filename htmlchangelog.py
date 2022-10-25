@@ -1,7 +1,8 @@
 # vim: set fileencoding=utf-8 :
 
+from builtins import object
 import re
-import cgi
+import html
 from genshi.template import TemplateLoader
 import debian.changelog
 
@@ -22,7 +23,7 @@ class HTMLChangelogFilter(object):
     def vcs_commit_filter(self, changes):
         body = []
         for line in changes:
-            line = cgi.escape(line)
+            line = html.escape(line)
             for regex in self.commit_id_res:
                 m = regex.match(line)
                 if m:
@@ -38,7 +39,7 @@ class HTMLChangelogFilter(object):
         if self.vcsbrowser:
             block.body = self.vcs_commit_filter(block.changes())
         else:
-            block.body = cgi.escape("\n".join(block.changes()))
+            block.body = html.escape("\n".join(block.changes()))
         return block
 
 
@@ -61,5 +62,5 @@ class HTMLChangelog(debian.changelog.Changelog):
         return self.html_tmpl.generate(title=title, blocks=self._blocks, markup_block=self.markup_block)
 
     def __str__(self):
-        return self.stream().render('xhtml', doctype='xhtml-strict').encode('utf-8')
+        return self.stream().render('xhtml', doctype='xhtml-strict')
 
